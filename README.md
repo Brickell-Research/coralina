@@ -1,8 +1,6 @@
-# coralina
+# Coralina Jewelry Co.
 
-> Hello world.
-
-A [Brickell Research](https://brickellresearch.org) project.
+> caribbean roots × gulf coast — handmade with coastal magic
 
 ## Local development
 

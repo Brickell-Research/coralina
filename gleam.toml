@@ -2,14 +2,7 @@ name = "coralina"
 version = "0.1.0"
 target = "erlang"
 
-description = "Hello world. A Brickell Research project."
-
-# Fill in once the GitHub remote is set up.
-# repository = { type = "github", user = "...", repo = "coralina" }
-
-links = [
-  { title = "Brickell Research", href = "https://brickellresearch.org" },
-]
+description = "Coralina Jewelry Co. — caribbean roots × gulf coast, handmade with coastal magic."
 
 [dependencies]
 gleam_stdlib = ">= 0.44.0 and < 2.0.0"
