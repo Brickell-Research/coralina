@@ -8,13 +8,47 @@
       name="description"
       content="Coralina Jewelry Co. — ocean-inspired jewelry. Caribbean roots × gulf coast, handmade with coastal magic."
     />
+    <link rel="canonical" href="https://coralina.brickellresearch.org/" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Coralina Jewelry Co." />
+    <meta property="og:title" content="Coralina Jewelry Co. — Handmade Coastal Jewelry" />
+    <meta
+      property="og:description"
+      content="Ocean-inspired jewelry. Caribbean roots × gulf coast, handmade with coastal magic."
+    />
+    <meta property="og:url" content="https://coralina.brickellresearch.org/" />
+    <meta property="og:image" content="https://coralina.brickellresearch.org/logo-badge.png" />
+    <meta property="og:image:width" content="760" />
+    <meta property="og:image:height" content="760" />
+    <meta property="og:image:alt" content="Circular Coralina Jewelry Co. badge with navy lettering above teal and blush watercolor corals." />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Coralina Jewelry Co." />
+    <meta
+      name="twitter:description"
+      content="Ocean-inspired jewelry. Caribbean roots × gulf coast, handmade with coastal magic."
+    />
+    <meta name="twitter:image" content="https://coralina.brickellresearch.org/logo-badge.png" />
+
+    <link rel="preload" as="image" href="/logo-badge.webp" type="image/webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Parisienne&family=Jost:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Coralina Jewelry Co.",
+        "url": "https://coralina.brickellresearch.org/",
+        "logo": "https://coralina.brickellresearch.org/logo-badge.png",
+        "description": "Ocean-inspired handmade jewelry — Caribbean roots × gulf coast."
+      }
+    </script>
     <style>
       :root {
         --ink: #1b3a8b;
@@ -40,22 +74,40 @@
         color: var(--ink);
         line-height: 1.55;
         background: var(--canvas);
-        background-image:
-          radial-gradient(
-            ellipse at 18% 82%,
-            rgba(143, 211, 208, 0.28) 0%,
-            transparent 55%
-          ),
-          radial-gradient(
-            ellipse at 82% 78%,
-            rgba(244, 201, 203, 0.28) 0%,
-            transparent 60%
-          );
-        background-attachment: fixed;
         min-height: 100svh;
         display: flex;
         flex-direction: column;
-        padding: 24px;
+        padding:
+          max(24px, env(safe-area-inset-top))
+          max(24px, env(safe-area-inset-right))
+          max(24px, env(safe-area-inset-bottom))
+          max(24px, env(safe-area-inset-left));
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: -8vmax;
+        pointer-events: none;
+        z-index: -1;
+        will-change: transform, opacity;
+      }
+
+      body::before {
+        background-image: radial-gradient(
+          ellipse at 18% 82%,
+          rgba(143, 211, 208, 0.28) 0%,
+          transparent 55%
+        );
+      }
+
+      body::after {
+        background-image: radial-gradient(
+          ellipse at 82% 78%,
+          rgba(244, 201, 203, 0.28) 0%,
+          transparent 60%
+        );
       }
 
       .hero {
@@ -111,7 +163,11 @@
 
       @media (min-width: 720px) {
         body {
-          padding: 40px 64px;
+          padding:
+            max(40px, env(safe-area-inset-top))
+            max(64px, env(safe-area-inset-right))
+            max(40px, env(safe-area-inset-bottom))
+            max(64px, env(safe-area-inset-left));
         }
 
         .hero-mark {
@@ -120,13 +176,40 @@
       }
 
       @media (prefers-reduced-motion: no-preference) {
-        .hero-mark,
-        .motto {
-          animation: rise 700ms ease-out both;
+        .hero-mark {
+          animation: bleed 1400ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
         }
 
         .motto {
-          animation-delay: 120ms;
+          animation: rise 700ms ease-out 520ms both;
+        }
+
+        body::before {
+          animation:
+            bloom 1800ms ease-out 250ms both,
+            tide-a 28s ease-in-out 250ms infinite;
+        }
+
+        body::after {
+          animation:
+            bloom 1800ms ease-out 250ms both,
+            tide-b 32s ease-in-out 250ms infinite;
+        }
+
+        @keyframes bleed {
+          0% {
+            opacity: 0;
+            transform: scale(0.92);
+            filter: blur(8px);
+          }
+          60% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0);
+          }
         }
 
         @keyframes rise {
@@ -139,20 +222,56 @@
             transform: none;
           }
         }
+
+        @keyframes bloom {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes tide-a {
+          0%,
+          100% {
+            transform: translate3d(0, 0, 0) scale(1);
+          }
+          50% {
+            transform: translate3d(2.2%, -1.6%, 0) scale(1.06);
+          }
+        }
+
+        @keyframes tide-b {
+          0%,
+          100% {
+            transform: translate3d(0, 0, 0) scale(1);
+          }
+          50% {
+            transform: translate3d(-2%, 1.4%, 0) scale(1.05);
+          }
+        }
       }
     </style>
   </head>
   <body>
     <main class="hero">
       <figure class="hero-mark">
-        <img
-          src="/logo-badge.png"
-          alt="Circular Coralina Jewelry Co. badge with navy lettering above teal and blush watercolor corals and a small clownfish."
-        />
+        <picture>
+          <source srcset="/logo-badge.webp" type="image/webp" />
+          <img
+            src="/logo-badge.png"
+            width="760"
+            height="760"
+            fetchpriority="high"
+            decoding="async"
+            alt="Circular Coralina Jewelry Co. badge with navy lettering above teal and blush watercolor corals and a small clownfish."
+          />
+        </picture>
       </figure>
 
       <h1 class="motto">
-        <span>ocean-inspired jewelry 🌊</span>
+        <span>ocean-inspired jewelry <span aria-hidden="true">🌊</span></span>
         <span>caribbean roots &times; gulf coast</span>
         <span>handmade with coastal magic</span>
       </h1>
